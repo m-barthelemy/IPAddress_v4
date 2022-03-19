@@ -104,9 +104,9 @@ public class IPNetwork_v4 {
     
     public let version: Int = IP_VERSION
     public let maxPrefixLen: Int = MAX_PREFIX_LENGTH
-    public var count: Int = 0
-    public var hosts: [IPAddress_v4]?
-    public var usableHosts: [IPAddress_v4]?
+    //public var count: Int = 0
+    //public var hosts: [IPAddress_v4]?
+    //public var usableHosts: [IPAddress_v4]?
     public var prefix: Int?
     public var netMask: IPAddress_v4?
     public var networkAddress: IPAddress_v4?
@@ -126,8 +126,8 @@ public class IPNetwork_v4 {
                     self.netMask = self.getNetMask(self.prefix!)
                     self.networkAddress = self.getNetworkAddress(self.address!, self.netMask!)
                     self.broadcastAddress = self.getBroadcastAddress(self.networkAddress!, self.prefix!)
-                    (self.hosts, self.usableHosts, self.count) =
-                        self.explodeNetwork(self.networkAddress!, self.broadcastAddress!)
+                    //(self.hosts, self.usableHosts, self.count) =
+                    //    self.explodeNetwork(self.networkAddress!, self.broadcastAddress!)
                     self.withPrefix = rep
                     self.withNetMask = "\(self.address!)/\(self.netMask!.address!)"
                 } else {
@@ -139,8 +139,8 @@ public class IPNetwork_v4 {
                     self.isRange = true
                     self.networkAddress = try! IPAddress_v4(range[0])
                     self.broadcastAddress = try! IPAddress_v4(range[1])
-                    (self.hosts, self.usableHosts, self.count) =
-                        explodeRange(self.networkAddress!, self.broadcastAddress!)
+                    //(self.hosts, self.usableHosts, self.count) =
+                    //    explodeRange(self.networkAddress!, self.broadcastAddress!)
                 } else {
                     throw IPAddressParsingError(kind: .invalidValue)
                 }
@@ -149,9 +149,9 @@ public class IPNetwork_v4 {
                 self.netMask = try! IPAddress_v4("255.255.255.255")
                 self.networkAddress = try! IPAddress_v4(rep)
                 self.broadcastAddress = try! IPAddress_v4(rep)
-                self.count = 1
-                self.hosts = [self.networkAddress!]
-                self.usableHosts = [self.networkAddress!]
+                //self.count = 1
+                //self.hosts = [self.networkAddress!]
+                //self.usableHosts = [self.networkAddress!]
                 self.withPrefix = "\(rep)/32"
                 self.withNetMask = "\(rep)/255.255.255.255"
             } else {
